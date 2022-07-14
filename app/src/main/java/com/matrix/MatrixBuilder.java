@@ -5,11 +5,11 @@ public class MatrixBuilder {
     private Thread threads[];
     private int rows, columns;
 
-    MatrixBuilder dimensions(int x, int y) {
-        matrix.setDimension(x, y);
-        threads = new Thread[y];
-        rows = x;
-        columns = y;
+    MatrixBuilder dimensions(int row, int column) {
+        matrix.setDimension(row, column);
+        threads = new Thread[column];
+        rows = row;
+        columns = column;
         return this;
     }
 

@@ -10,10 +10,12 @@ public class App {
 
     public static void main(String[] args) {
         // System.out.println(new App().getGreeting());
-        Matrix a = new MatrixBuilder().dimensions(4, 4)
-                .addElements(2, 4, 3, 5, -4, -7, -5, -8, 6, 8, 2, 9, 4, 9, -2, 14)
+        Matrix a = new MatrixBuilder().dimensions(3, 2)
+                .addElements(2, 4, 3, 5, -4, -7, -5, -8, 6, 8, 2, 9, 4, 9, -2, 14, 43, 45, 3, 2, 54, 23, 54, 54, 23, 67,
+                        43, 23, 4, 23)
                 .build();
 
+        Matrix b = new MatrixBuilder().dimensions(3, 2).addElements(3, 4, -5, -5, 3, 5, 4).build();
         // Matrix aT = a.transpose();
 
         // System.out.println("---");
@@ -23,6 +25,10 @@ public class App {
         System.out.println("------LU-----");
         a.decompose();
         a.showLU();
+        System.out.println();
+        b.showMatrix();
+        b.decompose();
+        b.showLU();
 
     }
 }

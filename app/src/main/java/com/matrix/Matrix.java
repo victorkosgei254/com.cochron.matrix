@@ -1,5 +1,10 @@
 package com.matrix;
 
+import java.util.Arrays;
+import java.util.List;
+
+import javax.swing.plaf.multi.MultiInternalFrameUI;
+
 public class Matrix {
     private int rows, columns;
     private String name;
@@ -12,12 +17,12 @@ public class Matrix {
 
     }
 
-    public void setDimension(int x, int y) {
-        rows = x;
-        columns = y;
+    public void setDimension(int row, int column) {
+        rows = row;
+        columns = column;
         matrix = new double[rows][columns];
         L = unity();
-        U = new double[rows][rows];
+        U = new double[rows][columns];
     }
 
     public void setName(String n) {
@@ -85,18 +90,20 @@ public class Matrix {
     }
 
     void decompose() {
-        U[0] = matrix[0];
-        for (int i = 1; i < columns; i++) {
-            double[] prev = matrix[i - 1];
-            int mark = 1;
-            for (int j = 0; j < rows; j++) {
+        U = matrix;
 
-                // prev[j] / matrix[i][j];
-                if (mark < rows)
-                    L[i][j] = matrix[mark][j] / prev[j];
-                mark++;
+        for (int i = 0; i < columns; i++) {
+            for (int j = i + 1; j < rows; j++) {
+
+                double residue = U[j][i] / U[i][i];
+
+                for (int k = 0; k < columns; k++) {
+
+                    U[j][k] = U[j][k] - residue * U[i][k];
+
+                    L[j][i] = residue;
+                }
             }
-
         }
     }
 
@@ -104,6 +111,14 @@ public class Matrix {
         double[][] l = new double[rows][rows];
         for (int i = 0; i < rows; i++) {
             l[i][i] = 1;
+        }
+        return l;
+    }
+
+    double[] unityRow(int row) {
+        double[] l = new double[row];
+        for (int i = 0; i < rows; i++) {
+            l[i] = 1;
         }
         return l;
     }
@@ -118,9 +133,18 @@ public class Matrix {
     }
 
     public void showLU() {
+        System.out.println("U");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                System.out.printf("%8.4f", L[i][j]);
+                System.out.printf("%12.4f", U[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println("L");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < rows; j++) {
+                System.out.printf("%12.4f", L[i][j]);
             }
             System.out.println();
         }
