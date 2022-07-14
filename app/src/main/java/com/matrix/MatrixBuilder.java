@@ -56,14 +56,14 @@ public class MatrixBuilder {
     }
 
     MatrixBuilder addRows(int row, double... elements) {
-        for (int i = 0; i < columns; i++) {
+        for (int i = 0; i <= columns; i++) {
             matrix.addElement(row, i, elements[i]);
         }
         return this;
     }
 
     MatrixBuilder addColumns(int column, double... elements) {
-        for (int i = 0; i < columns; i++) {
+        for (int i = 0; i <= columns; i++) {
             matrix.addElement(i, column, elements[i]);
         }
         return this;

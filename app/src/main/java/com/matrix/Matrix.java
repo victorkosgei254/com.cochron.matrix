@@ -46,6 +46,7 @@ public class Matrix {
     }
 
     void addElement(int row, int column, double element) {
+        // System.out.printf("%d-%d= %4.2f\n", row, column, element);
         matrix[row][column] = element;
     }
 
@@ -118,7 +119,33 @@ public class Matrix {
         return this;
     }
 
-    void decompose() {
+    Matrix dotProduct(Matrix a) {
+        if (columns != a.rows) {
+            System.out.println("Returning null");
+            return null;
+        }
+
+        double[][] newMatrix = new double[rows][a.columns];
+        for (int i = 0; i < a.columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                System.out.println("--");
+                System.out.println(i);
+                System.out.println(matrix[j][i + 1]);
+                System.out.println("***");
+                newMatrix[j][i] = matrix[j][i] * a.matrix[i][i] + matrix[j][i + 1] * a.matrix[i + 1][i];
+                System.out.println(matrix[j][i] * a.matrix[i][i] + matrix[j][i + 1] *
+                        a.matrix[i + 1][i]);
+                // System.out.printf("%8.2f - %8.2f - %8.2f - %8.2f\n", matrix[j][i],
+                // a.matrix[i][i], matrix[j][i + 1],
+                // a.matrix[i + 1][i]);
+            }
+        }
+
+        matrix = newMatrix;
+        return this;
+    }
+
+    Matrix decompose() {
         U = matrix;
 
         for (int i = 0; i < columns; i++) {
@@ -134,6 +161,8 @@ public class Matrix {
                 }
             }
         }
+
+        return this;
     }
 
     double[][] unity() {

@@ -22,14 +22,25 @@ public class App {
         // System.out.println("---");
         // aT.showMatrix();
 
-        Matrix d = b.addMatrix(a).subtractMatrix(c);
+        // Matrix d = b.addMatrix(a).subtractMatrix(c);
 
-        d.showMatrix();
-        Matrix k = d.multiplyBy(3.1).transpose();
-        k.showMatrix();
-        k.decompose();
+        // d.showMatrix();
+        // Matrix k = d.multiplyBy(3.1).transpose();
+        // k.showMatrix();
+        // k.decompose();
 
-        k.showLU();
+        // k.showLU();
+        Matrix one = new MatrixBuilder().dimensions(3, 2).addElements(1, 2, 3, 4, 5, 6, 7, 8, 9, 20).build();
+        // one.addElement(2, 1, 13);
+        Matrix two = new MatrixBuilder().dimensions(2, 3).addElements(7, 8, 9, 4, 5,
+                6).build();
+        one.showMatrix();
+        System.out.println();
+        two.showMatrix();
+        Matrix t = one.dotProduct(two);
+        // t.showMatrix();
+        // two.dotProduct(one);
+        // three.showMatrix();
 
     }
 }
