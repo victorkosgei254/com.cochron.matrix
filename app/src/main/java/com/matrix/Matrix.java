@@ -84,8 +84,37 @@ public class Matrix {
     }
 
     Matrix addMatrix(Matrix a) {
-        rows += a.getRows();
-        columns += a.getColumns();
+        if (a.rows != rows || a.columns != columns)
+            return null;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrix[i][j] = matrix[i][j] + a.matrix[i][j];
+            }
+        }
+
+        return this;
+    }
+
+    Matrix subtractMatrix(Matrix a) {
+        if (a.rows != rows || a.columns != columns)
+            return null;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrix[i][j] = matrix[i][j] - a.matrix[i][j];
+            }
+        }
+
+        return this;
+    }
+
+    Matrix multiplyBy(double factor) {
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrix[i][j] = matrix[i][j] * factor;
+            }
+        }
+
         return this;
     }
 

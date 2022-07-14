@@ -21,20 +21,15 @@ public class App {
                 .addColumns(1, 47, 23, 43, 2, 43, 3, 3).build();
         // System.out.println("---");
         // aT.showMatrix();
-        a.showMatrix();
-        System.out.println();
-        System.out.println("------LU-----");
-        a.decompose();
-        a.showLU();
-        System.out.println();
-        b.showMatrix();
-        b.decompose();
-        b.showLU();
 
-        System.out.println();
-        c.showMatrix();
-        c.decompose();
-        c.showLU();
+        Matrix d = b.addMatrix(a).subtractMatrix(c);
+
+        d.showMatrix();
+        Matrix k = d.multiplyBy(3.1).transpose();
+        k.showMatrix();
+        k.decompose();
+
+        k.showLU();
 
     }
 }
