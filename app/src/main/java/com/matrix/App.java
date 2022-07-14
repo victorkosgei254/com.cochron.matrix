@@ -17,7 +17,8 @@ public class App {
 
         Matrix b = new MatrixBuilder().dimensions(3, 2).addElements(3, 4, -5, -5, 3, 5, 4).build();
         // Matrix aT = a.transpose();
-
+        Matrix c = new MatrixBuilder().dimensions(3, 2).addColumns(0, 43, 43, 2, 43, 23, 43)
+                .addColumns(1, 47, 23, 43, 2, 43, 3, 3).build();
         // System.out.println("---");
         // aT.showMatrix();
         a.showMatrix();
@@ -29,6 +30,11 @@ public class App {
         b.showMatrix();
         b.decompose();
         b.showLU();
+
+        System.out.println();
+        c.showMatrix();
+        c.decompose();
+        c.showLU();
 
     }
 }
